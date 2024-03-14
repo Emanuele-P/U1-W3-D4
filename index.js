@@ -22,32 +22,29 @@ const generateTable = () => {
 
 generateTable()
 
-const bingoNumbers = []
-for (let i = 1; i <= 75; i++) {
-  bingoNumbers.push[i]
-}
+const bingoNumbers = Array.from({ length: 75 }, (_, index) => index + 1)
 const drawnNumbers = []
 
 const drawNumber = () => {
-  if (bingoNumbers === 0) {
-    return 'All numbers have been drawn!'
+  if (bingoNumbers.length === 0) {
+    document.querySelector('.last-drawn-number').innerText =
+      'All numbers have been drawn!'
+    return
   }
 
   const randomNumber = Math.floor(Math.random() * bingoNumbers.length)
   const number = bingoNumbers.splice(randomNumber, 1)[0]
   drawnNumbers.push(number)
 
-  document.getElementsByClassName('last-drawn-number').innerText =
-    'Drawn Number:' + ' ' + number
+  document.querySelector('.last-drawn-number').innerText =
+    'Drawn Number: ' + number
 
   const cells = document.querySelectorAll('.bingo-table td')
-  cells.forEach((cells) => {
-    if (parseInt(cells.innerText) === number) {
+  cells.forEach((cell) => {
+    if (parseInt(cell.innerText) === number) {
       cell.classList.add('highlighted')
     }
   })
-
-  return number
 }
 
 document
