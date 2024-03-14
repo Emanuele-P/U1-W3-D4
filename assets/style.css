@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: #cddbee;
+  user-select: none;
+}
+
+h1 {
+  font-family: 'Anton', sans-serif;
+  font-size: 2rem;
+  padding: 2rem;
+}
+
+h3 {
+  text-align: end;
+  font-size: 1.5rem;
+  background-color: #a7425c;
+  padding: 0.5rem;
+}
+
+.hover-text:hover {
+  color: #f4ce6d;
+  cursor: pointer;
+}
+
+.container {
+  max-width: 900px;
+  margin-inline: auto;
+  margin-top: 5rem;
+  padding: 0.5rem;
+  background-color: #563761;
+  color: #e57b5f;
+}
+
+table {
+  text-align: center;
+}
+
+td {
+  padding: 2rem;
+}
+
+td:hover {
+  color: #a7425c;
+}
+
+td.selected {
+  color: white;
+  background-color: #769bb4;
+  font-weight: 500;
+}
