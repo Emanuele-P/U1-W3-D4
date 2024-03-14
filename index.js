@@ -22,8 +22,20 @@ const generateTable = () => {
 
 generateTable()
 
-const bingoNumbers = Array.from({ length: 75 }, (_, index) => index + 1)
+const bingoNumbers = []
+for (let i = 1; i <= 75; i++) {
+  bingoNumbers.push(i)
+}
 const drawnNumbers = []
+
+const checkForBingo = (board) => {
+  const cells = board.querySelectorAll('.cell.highlighted')
+  if (cells.length === 15) {
+    alert('BINGO!')
+    return true
+  }
+  return false
+}
 
 const drawNumber = () => {
   if (bingoNumbers.length === 0) {
@@ -45,8 +57,59 @@ const drawNumber = () => {
       cell.classList.add('highlighted')
     }
   })
+  const userBoardCells = document.querySelectorAll('.user-board .cell')
+  userBoardCells.forEach((cell) => {
+    if (parseInt(cell.innerText) === number) {
+      cell.classList.add('highlighted')
+    }
+  })
+  const userBoards = document.querySelectorAll('.user-board')
+  userBoards.forEach((board) => {
+    if (checkForBingo(board)) {
+    }
+  })
 }
 
 document
   .querySelector('#draw-number-button')
   .addEventListener('click', drawNumber)
+
+const randomNumber = (range) => {
+  const randomIndex = Math.floor(Math.random() * range.length)
+  return range.splice(randomIndex, 1)[0]
+}
+
+const generateUserBoards = function () {
+  const usersNumber = document.getElementById('users-number').value
+  const gameCardContainer = document.querySelector('.game-card-container')
+  gameCardContainer.innerHTML = ''
+
+  if (parseInt(usersNumber) > 0) {
+    for (let userIndex = 0; userIndex < parseInt(usersNumber); userIndex++) {
+      const range = [...bingoNumbers]
+      const table = document.createElement('table')
+      table.className = 'user-board'
+
+      let cellCount = 0
+      for (let rowIndex = 0; rowIndex < 3; rowIndex++) {
+        const row = document.createElement('tr')
+        for (let cellIndex = 0; cellIndex < 5; cellIndex++) {
+          const cell = document.createElement('td')
+          cell.className = 'cell'
+          if (range.length > 0) {
+            const randomNum = randomNumber(range)
+            cell.textContent = randomNum
+            cellCount++
+          }
+          row.appendChild(cell)
+        }
+        table.appendChild(row)
+      }
+      gameCardContainer.appendChild(table)
+    }
+  }
+}
+
+document
+  .getElementById('add-cards')
+  .addEventListener('click', generateUserBoards)
