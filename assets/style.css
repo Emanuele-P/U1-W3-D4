@@ -57,7 +57,7 @@ td:hover {
   color: #a7425c;
 }
 
-td.selected {
+.highlighted {
   color: white;
   background-color: #769bb4;
   font-weight: 500;

@@ -36,6 +36,20 @@ const drawNumber = () => {
   const randomNumber = Math.floor(Math.random() * bingoNumbers.length)
   const number = bingoNumbers.splice(randomNumber, 1)[0]
   drawnNumbers.push(number)
+
+  document.getElementsByClassName('last-drawn-number').innerText =
+    'Drawn Number:' + ' ' + number
+
+  const cells = document.querySelectorAll('.bingo-table td')
+  cells.forEach((cells) => {
+    if (parseInt(cells.innerText) === number) {
+      cell.classList.add('highlighted')
+    }
+  })
+
   return number
 }
-console.log(drawNumber())
+
+document
+  .querySelector('#draw-number-button')
+  .addEventListener('click', drawNumber)
